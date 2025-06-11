@@ -71,12 +71,12 @@ export interface ProductFilters {
 }
 
 export interface ProductState {
-  items: Product[];
+  products: Product[];
   selectedProduct: Product | null;
   loading: boolean;
   error: string | null;
-  filters: ProductFilters;
-  categories: string[];
+  // filters: ProductFilters;
+  // categories: string[];
 }
 
 // User types

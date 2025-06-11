@@ -4,7 +4,7 @@ import './index.css'
 import { RouterProvider } from '@tanstack/react-router'
 import { router } from './app/routes/routes'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { store } from './app/store/store'
+import { store } from './store/store'
 import { Provider } from 'react-redux'
 
 

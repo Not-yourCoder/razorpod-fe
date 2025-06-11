@@ -1,10 +1,13 @@
-import React from 'react'
+import ProductGrid from '../components/ProductGrid'
 
-type Props = {}
 
-const Home = (props: Props) => {
+const Home = () => {
   return (
-    <div>Home</div>
+    <div className='min-h-screen'>
+      <h1>Product Page</h1>
+      <ProductGrid />
+    </div>
+
   )
 }
 
