@@ -1,6 +1,7 @@
 import { createRootRoute, createRoute, createRouter } from '@tanstack/react-router';
 import Home from '../../pages/Home';
 import ProductCategory from '@/pages/ProductCategory';
+import ShoppingCart from '@/pages/ShoppingCart';
 
 
 // Root Route
@@ -22,6 +23,11 @@ const productsRoute = createRoute({
     path: '/products',
     component: ProductCategory,
 });
+const shoppingCartRoute = createRoute({
+    getParentRoute: () => rootRoute,
+    path: '/shopping_cart',
+    component: ShoppingCart,
+});
 
 // export const productDetailRoute = createRoute({
 //     getParentRoute: () => rootRoute,
@@ -30,7 +36,7 @@ const productsRoute = createRoute({
 // });
 
 // Route Tree
-const routeTree = rootRoute.addChildren([homeRoute, categoryRoute, productsRoute]);
+const routeTree = rootRoute.addChildren([homeRoute, categoryRoute, productsRoute, shoppingCartRoute]);
 
 // Router instance
 export const router = createRouter({

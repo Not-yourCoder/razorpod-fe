@@ -11,6 +11,7 @@ import type { AppDispatch, RootState } from '@/store/store'
 import { useEffect, type Dispatch, type SetStateAction } from 'react'
 import { fetchCategories } from '@/store/slices/categorySlice'
 import { useSelector } from 'react-redux'
+import Cart from '../Cart/Cart'
 
 type Props = {
     setHeaderHeight: Dispatch<SetStateAction<boolean>>
@@ -19,8 +20,8 @@ type Props = {
 const NavBar = ({ setHeaderHeight }: Props) => {
 
 
-    const handleExpand = () => setHeaderHeight(true); 
-    
+    const handleExpand = () => setHeaderHeight(true);
+
     return (
         <div className='list-none'>
             <div className='mx-auto my-0'>
@@ -28,25 +29,11 @@ const NavBar = ({ setHeaderHeight }: Props) => {
                     <NavigationMenu viewport={false}>
                         <NavigationMenuItem className=''>
                             <NavigationMenuTrigger onMouseEnter={handleExpand}
-                                 className='bg-none'>Filter By Categories</NavigationMenuTrigger>
-                            {/* <NavigationMenuContent className='bg-red-800'>
-                                <ul className="grid grid-cols-4 w-100 gap-4">
-                                    {categories.map((category: any) => (
-                                        <Link
-                                            key={category.slug}
-                                            title={category.name}
-                                            to={category.url}
-                                            className='text-sm font-semibold'
-                                        >
-                                            {category.name}
-                                        </Link>
-                                    ))}
-                                </ul>
-                            </NavigationMenuContent> */}
+                                className='bg-none text-md'>Filter By Categories</NavigationMenuTrigger>
                         </NavigationMenuItem>
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger>Sort By</NavigationMenuTrigger>
-                            <NavigationMenuContent className='bg-red-800'>
+                        <NavigationMenuItem >
+                            <NavigationMenuTrigger className='text-md'>Sort By</NavigationMenuTrigger>
+                            <NavigationMenuContent className='bg-red-800 z-[99999]'>
                                 <RadioGroup defaultValue="option-one" className='w-56'>
                                     <div className="flex items-center space-x-2">
                                         <RadioGroupItem value="price-ascending" id="price-ascending" />
@@ -72,26 +59,27 @@ const NavBar = ({ setHeaderHeight }: Props) => {
                             </NavigationMenuContent>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <NavigationMenuLink >
-                                <Link to="/products">Products</Link>
+                            <NavigationMenuLink className='text-md' asChild>
+                                <Link to="/products" >Products</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <NavigationMenuLink >
+                            <NavigationMenuLink className='text-md' >
                                 <Link to="/contactUs">Contact Us</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <NavigationMenuTrigger>
+                            {/* <NavigationMenuTrigger>
                                 <ShoppingCart />
                             </NavigationMenuTrigger>
                             <NavigationMenuContent>
-                                <ul className="grid w-[200px] gap-4">
-                                    <li>
-                                        Cart is empty
-                                    </li>
-                                </ul>
-                            </NavigationMenuContent>
+                                <Cart />
+                            </NavigationMenuContent> */}
+                            <NavigationMenuLink >
+                                <Link to="/shopping_cart">
+                                    <ShoppingCart size={24} />
+                                </Link>
+                            </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
                             <NavigationMenuTrigger>

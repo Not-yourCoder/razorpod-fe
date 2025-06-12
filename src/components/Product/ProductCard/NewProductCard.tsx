@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { Plus } from 'lucide-react';
 import type { Product } from '@/store/types';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/Ui/tooltip';
+import toast from 'react-hot-toast';
 
 type Props = {
     product: Product,
@@ -15,7 +17,6 @@ export const NewProductCard = ({
 }: Props) => {
     const cardRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-
     // Extract first two letters for background text
     const backgroundText = product.title.substring(0, 2).toUpperCase();
 
@@ -81,9 +82,10 @@ export const NewProductCard = ({
         };
     }, []);
 
-    const handleAddToCart = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Prevent triggering onClick
+    const handleAddToCart = (e: React.MouseEvent, item: Product) => {
+        e.stopPropagation();
         addTocart();
+        toast(`${item.title} added to cart.`)
     };
 
     return (
@@ -136,13 +138,19 @@ export const NewProductCard = ({
                         <span className="text-white font-bold text-xl">
                             ${product.price.toLocaleString()}
                         </span>
-
-                        <button
-                            onClick={handleAddToCart}
-                            className="w-10 h-10 bg-red-500 hover:bg-red-600 rounded-lg flex items-center justify-center transition-colors duration-200 shadow-lg"
-                        >
-                            <Plus className="w-5 h-5 text-white" strokeWidth={2.5} />
-                        </button>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <button
+                                    onClick={(e) => handleAddToCart(e, product)}
+                                    className="w-10 h-10 bg-red-500 hover:bg-red-600 rounded-lg flex items-center justify-center transition-colors duration-200 shadow-lg hover:cursor-pointer"
+                                >
+                                    <Plus className="w-5 h-5 text-white" strokeWidth={2.5} />
+                                </button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Add to Cart</p>
+                            </TooltipContent>
+                        </Tooltip>
                     </div>
                 </div>
             </div>

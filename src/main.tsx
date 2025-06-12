@@ -6,6 +6,7 @@ import { router } from './app/routes/routes'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { store } from './store/store'
 import { Provider } from 'react-redux'
+import { Toaster } from 'react-hot-toast';
 
 
 const queryClient = new QueryClient();
@@ -17,5 +18,6 @@ createRoot(document.getElementById('root')!).render(
         <RouterProvider router={router} />
       </Provider>
     </QueryClientProvider>
+    <Toaster />
   </StrictMode>,
 )

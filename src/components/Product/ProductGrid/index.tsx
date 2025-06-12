@@ -39,6 +39,7 @@ import type { Product } from '../../../store/types';
 import { useEffect } from 'react';
 import { NewProductCard } from '../ProductCard/NewProductCard';
 import { ProductDetailPage } from '@/pages/NewProductDetails';
+import { addToCart } from '@/store/slices/cartSlice';
 
 const ProductGrid = () => {
     
@@ -60,9 +61,8 @@ const ProductGrid = () => {
     };
 
     const handleAddToCart = (product: Product) => {
-        console.log(`${product.title} added to cart`);
-        // Add your cart logic here
-    };
+        dispatch(addToCart(product));
+      };
 
     // Show product detail page if a product is selected
     if (selectedProduct) {
