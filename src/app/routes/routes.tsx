@@ -13,14 +13,9 @@ const homeRoute = createRoute({
     component: Home,
 });
 
-export const productDetailRoute = createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/products/$id",
-    component: ProductDetail,
-});
 
 // Route Tree
-const routeTree = rootRoute.addChildren([homeRoute, productDetailRoute]);
+const routeTree = rootRoute.addChildren([homeRoute]);
 
 // Router instance
 export const router = createRouter({
