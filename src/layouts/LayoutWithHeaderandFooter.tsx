@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header/Header'
 
 type Props = {
@@ -6,9 +6,10 @@ type Props = {
 }
 
 const LayoutWithHeaderandFooter = ({ children }: Props) => {
+    const [headerHeight, setHeaderHeight] = useState<boolean>(false)
     return (
         <div className='max-h-screen min-w-full'>
-            <Header />
+            <Header headerHeight={headerHeight} setHeaderHeight={setHeaderHeight} />
             {children}
         </div>
     )

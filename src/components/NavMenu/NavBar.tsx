@@ -8,30 +8,28 @@ import { Cog, LogOut, ScrollText, ShoppingBag, ShoppingCart, UserPen } from 'luc
 import { Avatar, AvatarFallback, AvatarImage } from '../Ui/avatar'
 import { useDispatch } from 'react-redux'
 import type { AppDispatch, RootState } from '@/store/store'
-import { useEffect } from 'react'
+import { useEffect, type Dispatch, type SetStateAction } from 'react'
 import { fetchCategories } from '@/store/slices/categorySlice'
 import { useSelector } from 'react-redux'
 
-type Props = {}
+type Props = {
+    setHeaderHeight: Dispatch<SetStateAction<boolean>>
+}
 
-const NavBar = (props: Props) => {
-    const dispatch = useDispatch<AppDispatch>();
+const NavBar = ({ setHeaderHeight }: Props) => {
 
-    useEffect(() => {
-        dispatch(fetchCategories());
-    }, [dispatch]);
 
-    const categories = useSelector((state: RootState) => state.categories.categories);
-    const selectedCategory = useSelector((state: RootState) => state.categories.selectedCategory);
-    console.log("categories", categories)
+    const handleExpand = () => setHeaderHeight(true); 
+    
     return (
         <div className='list-none'>
             <div className='mx-auto my-0'>
                 <div className='flex gap-6'>
                     <NavigationMenu viewport={false}>
                         <NavigationMenuItem className=''>
-                            <NavigationMenuTrigger className='bg-none'>Filter By Categories</NavigationMenuTrigger>
-                            <NavigationMenuContent className='bg-red-800'>
+                            <NavigationMenuTrigger onMouseEnter={handleExpand}
+                                 className='bg-none'>Filter By Categories</NavigationMenuTrigger>
+                            {/* <NavigationMenuContent className='bg-red-800'>
                                 <ul className="grid grid-cols-4 w-100 gap-4">
                                     {categories.map((category: any) => (
                                         <Link
@@ -44,7 +42,7 @@ const NavBar = (props: Props) => {
                                         </Link>
                                     ))}
                                 </ul>
-                            </NavigationMenuContent>
+                            </NavigationMenuContent> */}
                         </NavigationMenuItem>
                         <NavigationMenuItem>
                             <NavigationMenuTrigger>Sort By</NavigationMenuTrigger>

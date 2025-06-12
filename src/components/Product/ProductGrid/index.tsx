@@ -34,16 +34,18 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import type { AppDispatch, RootState } from '../../../store/store';
-import { fetchProducts, selectProduct } from '../../../store/slices/productSlice';
+import { clearSelectedProduct, fetchProducts, selectProduct } from '../../../store/slices/productSlice';
 import type { Product } from '../../../store/types';
 import { useEffect } from 'react';
 import { NewProductCard } from '../ProductCard/NewProductCard';
 import { ProductDetailPage } from '@/pages/NewProductDetails';
 
 const ProductGrid = () => {
-    const [selectedProductForDetail, setSelectedProductForDetail] = useState<Product | null>(null);
+    
     const products = useSelector((state: RootState) => state.products.products);
     const dispatch = useDispatch<AppDispatch>();
+    const selectedProduct = useSelector((state: RootState) => state.products.selectedProduct);
+
 
     useEffect(() => {
         dispatch(fetchProducts());
@@ -51,11 +53,10 @@ const ProductGrid = () => {
 
     const handleProductClick = (product: Product) => {
         dispatch(selectProduct(product));
-        setSelectedProductForDetail(product);
     };
-
+    
     const handleBackToGrid = () => {
-        setSelectedProductForDetail(null);
+        dispatch(clearSelectedProduct());
     };
 
     const handleAddToCart = (product: Product) => {
@@ -64,10 +65,10 @@ const ProductGrid = () => {
     };
 
     // Show product detail page if a product is selected
-    if (selectedProductForDetail) {
+    if (selectedProduct) {
         return (
             <ProductDetailPage
-                product={selectedProductForDetail}
+                product={selectedProduct}
                 onBack={handleBackToGrid}
             />
         );
@@ -75,12 +76,12 @@ const ProductGrid = () => {
 
     // Show product grid
     return (
-        <div className="py-8 overflow-hidden">
+        <div className="py-8 overflow-hidden mt-36">
             <div className="container mx-auto">
                 <h1 className="text-5xl font-semibold text-gray-900 mb-8">Our Products</h1>
                 <div className="flex min-h-[75vh] overflow-hidden gap-6 overflow-x-auto pb-4 bg-white no-scrollbar snap-x snap-mandatory">
                     {products.map((product) => (
-                        <div key={product.id} className="snap-start border-2">
+                        <div key={product.id} className="snap-start">
                             <NewProductCard
                                 product={product}
                                 onClick={() => handleProductClick(product)}

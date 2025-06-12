@@ -89,7 +89,7 @@ export const NewProductCard = ({
     return (
         <div
             ref={containerRef}
-            className="w-64 h-96 relative cursor-pointer flex-shrink-0"
+            className="w-86 h-96 relative cursor-pointer flex-shrink-0"
             style={{ perspective: '1000px' }}
         >
             <div className="absolute inset-0 flex items-center justify-center bg-transparent">
@@ -104,7 +104,7 @@ export const NewProductCard = ({
             {/* Actual Card */}
             <div
                 ref={cardRef}
-                className="absolute inset-0 w-64 h-[75vh] bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 rounded-t-lg p-6 overflow-hidden shadow-2xl hover:cursor-pointer"
+                className="absolute inset-0 w-86 h-[75vh] bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 rounded-t-lg p-6 overflow-hidden shadow-2xl hover:cursor-pointer"
                 style={{ transformStyle: 'preserve-3d' }}
                 onClick={onClick}
             >

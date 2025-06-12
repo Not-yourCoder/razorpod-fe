@@ -22,6 +22,16 @@ export const fetchProductById = createAsyncThunk(
   }
 );
 
+export const fetchProductsByCategory = createAsyncThunk(
+  "products/fetchProductsByCategory",
+  async (category: string) => {
+    const response = await axios.get(
+      `https://dummyjson.com/products/category/${category}`
+    );
+    return response.data.products;
+  }
+);
+
 const initialState: ProductState = {
   products: [],
   selectedProduct: null,
@@ -38,6 +48,9 @@ const productsSlice = createSlice({
     selectProduct(state, action: PayloadAction<Product | null>) {
       console.log("Selected Product", action);
       state.selectedProduct = action.payload;
+    },
+    clearSelectedProduct: (state) => {
+      state.selectedProduct = null;
     },
     setLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload;
@@ -64,11 +77,19 @@ const productsSlice = createSlice({
         if (!existing) {
           state.products.push(action.payload);
         }
+      })
+      builder.addCase(fetchProductsByCategory.fulfilled, (state, action) => {
+        state.products = action.payload;
       });
   },
 });
 
-export const { setProducts, selectProduct, setLoading, setError } =
-  productsSlice.actions;
+export const {
+  setProducts,
+  selectProduct,
+  clearSelectedProduct,
+  setLoading,
+  setError,
+} = productsSlice.actions;
 
 export default productsSlice.reducer;
