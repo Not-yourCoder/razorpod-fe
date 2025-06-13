@@ -63,7 +63,7 @@ const Header = ({ headerHeight, setHeaderHeight }: Props) => {
         <div style={{ height: `${headerHeight ? "600px" : "140px"}` }} className={` w-full py-12 px-18 border-b-2 fixed top-0 border-slate-100 shadow-md duration-300 ease-in-out overflow-hidden z-40`} onMouseLeave={handleCollapse}>
             <div className='flex justify-between items-center'>
                 <div className="logo m-[-50px]">
-                    <img src={images.logoWithname} alt='razorpod-logo' className='h-18' />
+                    <img src={images.logo} alt='razorpod-logo' className='h-18' />
                 </div>
                 <NavBar setHeaderHeight={setHeaderHeight} />
             </div>

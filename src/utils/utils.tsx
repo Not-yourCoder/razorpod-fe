@@ -71,3 +71,12 @@ export const setCategoryIcon = (category: string) => {
       return <ShirtIcon />
   }
 }
+
+export const scrollByAmount = (horizontalScrollRef: any, amount: number) => {
+  if (horizontalScrollRef.current) {
+    horizontalScrollRef.current.scrollBy({
+      left: amount,
+      behavior: 'smooth',
+    });
+  }
+};
