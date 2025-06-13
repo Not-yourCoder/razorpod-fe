@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, Settings, Wrench, Zap, Circle } from 'lucide-react';
 import type { Product } from '@/store/types';
 
@@ -13,6 +14,7 @@ export const ProductDetailPage = ({ product, onBack }: Props) => {
     const leftPanelRef = useRef<HTMLDivElement>(null);
     const rightPanelRef = useRef<HTMLDivElement>(null);
 
+    console.log(isAnimating);
     const wheelOptions = [
         { id: 0, name: 'Classic', icon: Circle },
         { id: 1, name: 'Sport', icon: Circle },

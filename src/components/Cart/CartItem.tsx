@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from 'react';
 import { X, Plus, Minus } from 'lucide-react';
-import { Button } from '../Ui/button';
 import { Input } from '../Ui/input';
+import { Button } from '../Ui/button';
 
 const ShoppingCart = () => {
     const [isOpen, setIsOpen] = useState(true);
@@ -36,7 +37,7 @@ const ShoppingCart = () => {
         }
     ]);
 
-    const updateQuantity = (id, change) => {
+    const updateQuantity = (id: any, change: any) => {
         setCartItems(items =>
             items.map(item =>
                 item.id === id
@@ -46,9 +47,9 @@ const ShoppingCart = () => {
         );
     };
 
-    const removeItem = (id) => {
-        setCartItems(items => items.filter(item => item.id !== id));
-    };
+    // const removeItem = (id) => {
+    //     setCartItems(items => items.filter(item => item.id !== id));
+    // };
 
     const getTotalItems = () => {
         return cartItems.reduce((total, item) => total + item.quantity, 0);

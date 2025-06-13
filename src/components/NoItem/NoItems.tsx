@@ -1,5 +1,5 @@
 import { images } from '@/constants/Images'
-import { Button } from '../ui/button'
+import { Button } from '../Ui/button'
 
 const NoItems = () => {
     return (

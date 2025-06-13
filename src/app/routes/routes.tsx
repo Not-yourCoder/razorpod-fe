@@ -35,12 +35,6 @@ const contactUsRoute = createRoute({
     component: Contactus,
 });
 
-// export const productDetailRoute = createRoute({
-//     getParentRoute: () => rootRoute,
-//     path: "/products/$id",
-//     component: ProductDetailPage,
-// });
-
 // Route Tree
 const routeTree = rootRoute.addChildren([homeRoute, categoryRoute, productsRoute, shoppingCartRoute, contactUsRoute]);
 

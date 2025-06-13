@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { X, Plus, Minus } from 'lucide-react';
 import { Input } from '../Ui/input';
 import { useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { updateItemQuantity } from '@/store/slices/cartSlice';
 import { useNavigate } from '@tanstack/react-router';
 import toast from 'react-hot-toast';
-import { Button } from '../ui/button';
+import { Button } from '../Ui/button';
 
 const ShoppingCartComponent = () => {
     const dispatch = useDispatch<AppDispatch>();

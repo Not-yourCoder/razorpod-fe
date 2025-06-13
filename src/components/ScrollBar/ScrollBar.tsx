@@ -11,7 +11,6 @@ interface GlobalScrollbarProps {
 export const Scrollbar: React.FC<GlobalScrollbarProps> = ({
     thumbColor = 'red',
     trackColor = 'black',
-    thumbWidth = '4px',
     position = 'left',
     offset = '40px'
 }) => {

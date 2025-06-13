@@ -1,5 +1,6 @@
-import { BeautyIcon, FragranceIcon, GroceriesIcon, HomeDecorationIcon, KitchenAccessoriesIcon, ShirtIcon } from "@/constants/Icons";
-import { AiBeautifyIcon, Desk02Icon, LaptopProgrammingFreeIcons, LaptopProgrammingIcon } from "@hugeicons/core-free-icons";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {  FragranceIcon, GroceriesIcon, HomeDecorationIcon, KitchenAccessoriesIcon, ShirtIcon } from "@/constants/Icons";
+import { AiBeautifyIcon, Desk02Icon, LaptopProgrammingIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 export const groupCategoriesByKeyword = (categories: any[]) => {
