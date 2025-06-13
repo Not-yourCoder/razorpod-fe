@@ -37,6 +37,7 @@ const initialState: ProductState = {
   selectedProduct: null,
   loading: false,
   error: null,
+  sortBy : null
 };
 const productsSlice = createSlice({
   name: "products",
@@ -58,6 +59,9 @@ const productsSlice = createSlice({
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload;
     },
+    setSortBy(state, action: PayloadAction<ProductState["sortBy"]>) {
+      state.sortBy = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -77,10 +81,10 @@ const productsSlice = createSlice({
         if (!existing) {
           state.products.push(action.payload);
         }
-      })
-      builder.addCase(fetchProductsByCategory.fulfilled, (state, action) => {
-        state.products = action.payload;
       });
+    builder.addCase(fetchProductsByCategory.fulfilled, (state, action) => {
+      state.products = action.payload;
+    });
   },
 });
 
@@ -90,6 +94,7 @@ export const {
   clearSelectedProduct,
   setLoading,
   setError,
+  setSortBy,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

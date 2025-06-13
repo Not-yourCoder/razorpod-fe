@@ -94,7 +94,7 @@ const ShoppingCartComponent = () => {
                                 size="sm"
                                 onClick={() => {
                                     updateQuantity(item.id, -1);
-                                    toast("Item Removed")
+                                    toast.success("Item Removed")
                                 }}
                                 className="h-8 w-8 p-0 rounded-full border-gray-300"
                             >
@@ -106,7 +106,7 @@ const ShoppingCartComponent = () => {
                                 size="sm"
                                 onClick={() => {
                                     updateQuantity(item.id, 1);
-                                    toast("Item Added")
+                                    toast.success("Item Added")
                                 }}
                                 className="h-8 w-8 p-0 rounded-full border-gray-300"
                             >

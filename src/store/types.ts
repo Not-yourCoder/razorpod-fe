@@ -75,6 +75,7 @@ export interface ProductState {
   selectedProduct: Product | null;
   loading: boolean;
   error: string | null;
+  sortBy: "name-asc" | "name-desc" | "price-asc" | "price-desc" | null;
   // filters: ProductFilters;
   // categories: string[];
 }

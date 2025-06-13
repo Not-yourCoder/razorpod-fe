@@ -85,7 +85,7 @@ export const NewProductCard = ({
     const handleAddToCart = (e: React.MouseEvent, item: Product) => {
         e.stopPropagation();
         addTocart();
-        toast(`${item.title} added to cart.`)
+        toast.success(`${item.title} added to cart.`)
     };
 
     return (

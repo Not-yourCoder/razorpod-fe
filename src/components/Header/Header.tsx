@@ -6,15 +6,14 @@ import { useDispatch } from 'react-redux'
 import { fetchCategories } from '@/store/slices/categorySlice'
 import { useSelector } from 'react-redux'
 import { Link } from '@tanstack/react-router'
-import { HugeiconsIcon } from '@hugeicons/react';
-import { AiBeautifyIcon } from '@hugeicons/core-free-icons';
 import { images } from '@/constants/Images'
 import { ChevronRight } from 'lucide-react'
 import Featured from './FeaturedItems/Featured'
 import type { Product } from '@/store/types'
 import { setCategoryIcon } from '@/utils/utils'
-import { ProductDetailPage } from '@/pages/NewProductDetails'
 import { clearSelectedProduct, fetchProductsByCategory, selectProduct } from '@/store/slices/productSlice'
+import toast from 'react-hot-toast'
+import { ProductDetailPage } from '../Product/ProductDetails'
 
 type Props = {
     headerHeight: boolean
@@ -41,6 +40,7 @@ const Header = ({ headerHeight, setHeaderHeight }: Props) => {
         // dispatch(selectProduct(product));
     };
 
+    
     const handleBackToGrid = () => {
         dispatch(clearSelectedProduct());
     };
@@ -48,6 +48,7 @@ const Header = ({ headerHeight, setHeaderHeight }: Props) => {
     const handleProductByCategory = (category: string) => {
         console.log("category", category)
         dispatch(fetchProductsByCategory(category))
+        toast.success(`Showing Results for ${category}`)
     }
     if (selectedProduct) {
         return (
@@ -58,9 +59,9 @@ const Header = ({ headerHeight, setHeaderHeight }: Props) => {
         );
     }
     return (
-        <div style={{ height: `${headerHeight ? "600px" : "140px"}` }} className={` w-full py-12 px-18 border-b-2 fixed top-0 border-accent-foreground duration-300 ease-in-out overflow-hidden z-40`} onMouseLeave={handleCollapse}>
+        <div style={{ height: `${headerHeight ? "600px" : "140px"}` }} className={` w-full py-12 px-18 border-b-2 fixed top-0 border-slate-100 shadow-md duration-300 ease-in-out overflow-hidden z-40`} onMouseLeave={handleCollapse}>
             <div className='flex justify-between items-center'>
-                <div className="logo h-10">
+                <div className="logo m-[-50px]">
                     <img src={images.logoWithname} alt='razorpod-logo' className='h-18' />
                 </div>
                 <NavBar setHeaderHeight={setHeaderHeight} />
@@ -91,14 +92,14 @@ const Header = ({ headerHeight, setHeaderHeight }: Props) => {
                 </div>
 
                 {/* Right side featured categories */}
-                <div className='col-span-9'>
+                <div className='col-span-9 h-full'>
                     <h1 className='text-xl mb-4'>Featured Items</h1>
-                    <div className='grid grid-cols-4 gap-4 overflow-hidden w-full'>
+                    <div className='grid grid-cols-4 gap-4 w-full'>
                         {products.slice(0, 8).map((product: Product, index: number) => (
                             <Featured key={index} productLabel={product.title} image={product.thumbnail} brand={product.brand} onClick={() => handleProductClick(product)} />
                         ))}
                     </div>
-                    <div className='flex items-center mt-4'>
+                    <div className='flex items-center justify-end mt-8'>
                         <Link className='text-xl hover:text-red-700' to={"/categories"}>View All Products</Link>
                         <ChevronRight size={22} />
                     </div>
