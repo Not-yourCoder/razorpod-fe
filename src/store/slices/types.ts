@@ -1,5 +1,7 @@
+import type { Category } from "../types";
+
 export type CategoryState = {
-  categories: string[];
+  categories: Category[];
   selectedCategory: string | null;
   loading: boolean;
   error: string | null;

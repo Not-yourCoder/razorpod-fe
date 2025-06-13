@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {  FragranceIcon, GroceriesIcon, HomeDecorationIcon, KitchenAccessoriesIcon, ShirtIcon } from "@/constants/Icons";
+import { FragranceIcon, GroceriesIcon, HomeDecorationIcon, KitchenAccessoriesIcon, ShirtIcon } from "@/constants/Icons";
+import type { Product } from "@/store/types";
 import { AiBeautifyIcon, Desk02Icon, LaptopProgrammingIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
@@ -80,3 +81,19 @@ export const scrollByAmount = (horizontalScrollRef: any, amount: number) => {
     });
   }
 };
+
+export const getBadgeColor = (status: string) => {
+  switch (status.toLowerCase()) {
+    case 'no stock':
+      return 'bg-red-500 text-white';
+    case 'low stock':
+      return 'bg-yellow-400 text-black';
+    case 'in stock':
+      return 'bg-green-500 text-white';
+    default:
+      return 'bg-gray-300 text-black';
+  }
+};
+
+export const isWishlisted = (productId: number, wishlist: Product[]) =>
+  wishlist.some((item) => item.id === productId);

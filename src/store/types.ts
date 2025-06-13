@@ -122,3 +122,9 @@ export interface RegisterCredentials extends LoginCredentials {
   name: string;
   confirmPassword: string;
 }
+
+export interface Category {
+  slug: string;
+  name: string;
+  url: string;
+}
