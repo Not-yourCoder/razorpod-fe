@@ -1,10 +1,7 @@
 import { images } from '@/constants/Images'
-import React from 'react'
-import { Button } from '../Ui/button'
+import { Button } from '../ui/button'
 
-type Props = {}
-
-const NoItems = (props: Props) => {
+const NoItems = () => {
     return (
         <div className='flex flex-col justify-center items-center gap-6 text-center bg-white p-8 rounded-lg shadow-lg'>
             <img src={images.emptyBox} alt='empty-box' className='w-48 h-48 object-contain' />

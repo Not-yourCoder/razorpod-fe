@@ -1,20 +1,9 @@
 import { Link } from '@tanstack/react-router'
-import { navMenu } from '../../constants/Constants'
-import { Label } from '../Ui/label'
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger } from '../Ui/navigation-menu'
-import { RadioGroup, RadioGroupItem } from '../Ui/radio-group'
-import { NavItem } from './NavItem'
-import { Cog, LogOut, ScrollText, ShoppingBag, ShoppingCart, UserPen } from 'lucide-react'
-import { Avatar, AvatarFallback, AvatarImage } from '../Ui/avatar'
-import { useDispatch } from 'react-redux'
-import type { AppDispatch, RootState } from '@/store/store'
-import { useEffect, type Dispatch, type SetStateAction } from 'react'
-import { fetchCategories } from '@/store/slices/categorySlice'
-import { useSelector } from 'react-redux'
-import Cart from '../Cart/Cart'
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger } from '../Ui/navigation-menu'
 import ProductSortSelect from '../Product/ProductSort/ProductSort'
 import CartIcon from '../Header/CartComponent/CartIcon'
 import AccountSelect from '../Profile/Profile'
+import type { Dispatch, SetStateAction } from 'react'
 
 type Props = {
     setHeaderHeight: Dispatch<SetStateAction<boolean>>
