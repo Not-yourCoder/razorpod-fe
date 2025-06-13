@@ -9,7 +9,7 @@ import type { Product, ProductState } from "../types";
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
-    const res = await axios.get("http://localhost:5000/api/products");
+    const res = await axios.get("https://dummyjson.com/products/");
     return res.data.products;
   }
 );
@@ -17,7 +17,7 @@ export const fetchProducts = createAsyncThunk(
 export const fetchProductById = createAsyncThunk(
   "products/fetchProductById",
   async (id: number) => {
-    const res = await axios.get(`http://localhost:5000/api/products/${id}`);
+    const res = await axios.get(`https://dummyjson.com/products/${id}`);
     return res.data;
   }
 );
