@@ -71,12 +71,13 @@ export interface ProductFilters {
 }
 
 export interface ProductState {
-  items: Product[];
+  products: Product[];
   selectedProduct: Product | null;
   loading: boolean;
   error: string | null;
-  filters: ProductFilters;
-  categories: string[];
+  sortBy: "name-asc" | "name-desc" | "price-asc" | "price-desc" | null;
+  // filters: ProductFilters;
+  // categories: string[];
 }
 
 // User types

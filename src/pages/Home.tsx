@@ -1,10 +1,17 @@
-import React from 'react'
 
-type Props = {}
+import ProductGrid from '@/components/Product/ProductGrid'
+import LayoutWithHeaderandFooter from '../layouts/LayoutWithHeaderandFooter'
 
-const Home = (props: Props) => {
+
+const Home = () => {
+
   return (
-    <div>Home</div>
+    <>
+      <LayoutWithHeaderandFooter>
+        <ProductGrid />
+      </LayoutWithHeaderandFooter>
+    </>
+
   )
 }
 

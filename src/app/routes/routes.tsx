@@ -1,6 +1,8 @@
 import { createRootRoute, createRoute, createRouter } from '@tanstack/react-router';
 import Home from '../../pages/Home';
-import ProductsDetails from '../../pages/Products';
+import ProductCategory from '@/pages/ProductCategory';
+import ShoppingCart from '@/pages/ShoppingCart';
+import Contactus from '@/pages/Contactus';
 
 
 // Root Route
@@ -12,15 +14,35 @@ const homeRoute = createRoute({
     path: '/',
     component: Home,
 });
-
-const productDetailRoute = createRoute({
+const categoryRoute = createRoute({
     getParentRoute: () => rootRoute,
-    path: '/product/$id',
-    component: ProductsDetails,
+    path: '/categories',
+    component: ProductCategory,
+});
+const productsRoute = createRoute({
+    getParentRoute: () => rootRoute,
+    path: '/products',
+    component: ProductCategory,
+});
+const shoppingCartRoute = createRoute({
+    getParentRoute: () => rootRoute,
+    path: '/shopping_cart',
+    component: ShoppingCart,
+});
+const contactUsRoute = createRoute({
+    getParentRoute: () => rootRoute,
+    path: '/contactUs',
+    component: Contactus,
 });
 
+// export const productDetailRoute = createRoute({
+//     getParentRoute: () => rootRoute,
+//     path: "/products/$id",
+//     component: ProductDetailPage,
+// });
+
 // Route Tree
-const routeTree = rootRoute.addChildren([homeRoute, productDetailRoute]);
+const routeTree = rootRoute.addChildren([homeRoute, categoryRoute, productsRoute, shoppingCartRoute, contactUsRoute]);
 
 // Router instance
 export const router = createRouter({
