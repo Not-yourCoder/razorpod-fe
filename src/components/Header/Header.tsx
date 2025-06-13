@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useEffect, type Dispatch, type SetStateAction } from 'react'
 import NavBar from '../NavMenu/NavBar'

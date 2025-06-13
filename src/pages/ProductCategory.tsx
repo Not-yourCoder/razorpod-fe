@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import NoItems from "@/components/NoItem/NoItems";
 import { ProductDetailPage } from "@/components/Product/ProductDetails";
 import { fetchCategories } from "@/store/slices/categorySlice";
@@ -6,14 +7,13 @@ import type { AppDispatch, RootState } from "@/store/store";
 import type { Product } from "@/store/types";
 import { setCategoryIcon } from "@/utils/utils";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-type Props = {}
 
-const ProductCategory = (props: Props) => {
+const ProductCategory = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate()
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ArrowLeft } from 'lucide-react';
 import type { Product } from '@/store/types';
@@ -8,10 +8,6 @@ import ProductImage from './ProductImage';
 import ProductPriceAndCart from './ProductPriceAndCart';
 import ProductInfo from './ProductInfo';
 import ReviewsList from './ReviewsList';
-import ConfigOptions from '../ConfigOptions';
-import { addToCart } from '@/store/slices/cartSlice';
-import { useDispatch } from 'react-redux';
-import toast from 'react-hot-toast';
 
 type Props = {
     product: Product;
@@ -20,6 +16,7 @@ type Props = {
 
 export const ProductDetailPage = ({ product, onBack }: Props) => {
     const [isAnimating, setIsAnimating] = useState(true);
+    console.log(isAnimating)
     const leftPanelRef = useRef<HTMLDivElement>(null);
     const rightPanelRef = useRef<HTMLDivElement>(null);
 
