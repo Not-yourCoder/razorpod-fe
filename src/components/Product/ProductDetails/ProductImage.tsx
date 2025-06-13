@@ -1,4 +1,3 @@
-import * as React from "react";
 import type { Product } from "@/store/types";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/Ui/carousel";
 import { Card, CardContent } from "@/components/Ui/card";

@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
-import { Button } from "@/components/ui/button"
 import { Input } from "../Ui/input"
 import { Textarea } from "../Ui/textarea"
+import { Button } from "../Ui/button"
 
 export default function ContactUsComponent() {
     const formRef = useRef<HTMLDivElement>(null)
@@ -41,7 +41,7 @@ export default function ContactUsComponent() {
                     <Input type="text" placeholder="Subject" className="h-12 contact-field" />
                     <Textarea placeholder="Your Message..." rows={5} className="resize-none contact-field" />
 
-                    <Button type="submit" className="w-full h-12 text-lg contact-field">
+                    <Button type="submit" className="w-full h-12 text-lg contact-field bg-slate-200 text-black">
                         Send Message
                     </Button>
                 </form>
