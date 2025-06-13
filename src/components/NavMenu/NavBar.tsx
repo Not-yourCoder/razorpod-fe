@@ -21,7 +21,7 @@ const NavBar = ({ setHeaderHeight }: Props) => {
                     <NavigationMenu viewport={false}>
                         <NavigationMenuItem className=''>
                             <NavigationMenuTrigger onMouseEnter={handleExpand}
-                                className='bg-none text-md'>Filter By Categories</NavigationMenuTrigger>
+                                className='bg-none text-md text-black'>Filter By Categories</NavigationMenuTrigger>
                         </NavigationMenuItem>
                         <NavigationMenuItem className='text-black'>
                             <ProductSortSelect />
