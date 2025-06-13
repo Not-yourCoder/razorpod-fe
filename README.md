@@ -1,54 +1,68 @@
-# React + TypeScript + Vite
+# Razorpod Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Setup & Local Development
 
-Currently, two official plugins are available:
+### Prerequisites
+- Node.js (v18 or above recommended)
+- npm or yarn
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Installation
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd razorpod-fe
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+4. **Open your browser:**
+   Visit [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Design Choices & Trade-offs
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **State Management:**
+  - Used Redux Toolkit for global state (products, categories, cart) for predictable state and easy debugging.
+- **Routing:**
+  - Used `@tanstack/react-router` for flexible, type-safe routing.
+- **Responsiveness:**
+  - Tailwind CSS utility classes are used for rapid, consistent, and responsive UI development.
+- **Animations:**
+  - GSAP is used for smooth product grid and card animations.
+- **Component Structure:**
+  - Components are modular and colocated by feature for maintainability.
+- **Performance:**
+  - Product grids use virtualization and horizontal scrolling for large datasets.
+- **Accessibility:**
+  - Interactive elements (buttons, links) use proper ARIA labels and keyboard navigation where possible.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Third-Party Libraries Used
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- **@tanstack/react-router**: Advanced, type-safe routing for React apps.
+- **Redux Toolkit**: Simplifies Redux state management and reduces boilerplate.
+- **react-redux**: Connects React components to the Redux store.
+- **GSAP**: For performant, timeline-based animations.
+- **react-hot-toast**: For user-friendly toast notifications.
+- **lucide-react**: For modern, consistent SVG icon components.
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
+
+**Why these choices?**
+- Chosen for their popularity, community support, and ability to solve specific problems (state, routing, animation, UI consistency) efficiently.
+
+---
+
+## Notes
+- If you encounter issues, ensure your Node.js version is compatible and dependencies are installed correctly.
+- For environment variables or API endpoints, check the `.env` file or project documentation.

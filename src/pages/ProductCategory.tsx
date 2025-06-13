@@ -1,14 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { CategoryBadges } from "@/components/CategoryBadges/CategoryBadge";
+import FilterByCategories from "@/components/Filter/Categories/FilterByCategories";
 import NoItems from "@/components/NoItem/NoItems";
+import ProductCardTypeTwo from "@/components/Product/ProductCard/ProductCardTypeTwo";
+import ProductCatHeader from "@/components/Product/ProductCategoryPage/ProductCatHeader";
 import { ProductDetailPage } from "@/components/Product/ProductDetails";
 import { fetchCategories } from "@/store/slices/categorySlice";
 import { clearSelectedProduct, fetchProducts, fetchProductsByCategory, selectProduct } from "@/store/slices/productSlice";
 import type { AppDispatch, RootState } from "@/store/store";
-import type { Product } from "@/store/types";
-import { setCategoryIcon } from "@/utils/utils";
-import { Link, useNavigate } from "@tanstack/react-router";
-import { ChevronLeft } from "lucide-react";
+import type { Category, Product } from "@/store/types";
+import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
@@ -18,10 +21,14 @@ const ProductCategory = () => {
   const navigate = useNavigate()
 
   const [selectedCategory, setselectedCategory] = useState<string>("All Products")
+  const [wishlist, setWishlist] = useState<Product[]>([])
 
   const products = useSelector((state: RootState) => state.products.products);
   const categories = useSelector((state: RootState) => state.categories.categories);
-  const categoriesWithAll = [{ slug: "all", name: "All Products", url: "" }, ...categories]
+  const categoriesWithAll: Category[] = [
+    { slug: "all", name: "All Products", url: "" },
+    ...categories
+  ];
   const selectedProduct = useSelector((state: RootState) => state.products.selectedProduct);
 
 
@@ -55,6 +62,23 @@ const ProductCategory = () => {
     setselectedCategory(category.name)
   }
 
+  const handleWishlist = (product: Product) => {
+    setWishlist((prev) => {
+      const isWishlisted = prev.some((item) => item.id === product.id);
+      if (isWishlisted) {
+        toast(`${product.title} removed wishlist`, {
+          icon: '💔',
+        });
+        return prev.filter((item) => item.id !== product.id);
+      } else {
+        toast(`${product.title} wishlisted`, {
+          icon: '❤️',
+        });
+        return [...prev, product];
+      }
+    });
+  };
+
   if (selectedProduct) {
     return (
       <ProductDetailPage
@@ -65,60 +89,64 @@ const ProductCategory = () => {
   }
   return (
     <div className="">
-      <section className="h-72 w-full bg-slate-200 grid grid-cols-2 justify-center items-center text-center mb-8">
-        <h1 className="font-semibold text-5xl ">Our Best Products</h1>
-        <p className="font-light text-xl ">Not all those who wander are lost… some are just shopping for something better.</p>
+      {/* Hero Section */}
+      <section className="h-64 md:h-72 w-full bg-slate-200 grid grid-cols-1 md:grid-cols-2 justify-center items-center text-center mb-8 px-4">
+        <h1 className="font-semibold text-4xl md:text-5xl">Our Best Products</h1>
+        <p className="font-light text-lg md:text-xl mt-4 md:mt-0">
+          Not all those who wander are lost… some are just shopping for something better.
+        </p>
       </section>
-      <section className="max-w-7xl mx-auto my-0">
 
-        {products.length > 0 &&
-          <section className="flex gap-4 items-center py-6 text-2xl">
-            <div className="p-2 rounded-full hover:bg-slate-300 hover:scale-105 duration-300 hover:cursor-pointer hover:text-white" onClick={gotoHome}>
-              <ChevronLeft size={28} />
-            </div>
-            <h1>{selectedCategory}</h1>
-          </section>
-        }
-        <section className="grid grid-cols-12 gap-6 max-h-[38rem] overflow-auto">
+      {/* Main Section */}
+      <section className="max-w-7xl mx-auto px-4 md:px-8">
+
+        {products.length > 0 && (
+          <ProductCatHeader selectedCategory={selectedCategory} gotoHome={gotoHome} />
+        )}
+        {/* Mobile & Tablet: Category badges */}
+        <div className="block lg:hidden mb-4">
+          <h1 className="mb-4 ml-2 text-lg">Filter by Categories</h1>
+          <CategoryBadges
+            categories={categoriesWithAll}
+            selectedCategory={selectedCategory}
+            onSelect={handleProductByCategory}
+          />
+        </div>
+        {/* Products and Filters */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 max-h-[calc(100vh-8rem)] overflow-auto no-scrollbar">
+
+          {/* Product List */}
           {products.length > 0 ? (
-            <div className="products grid grid-cols-4 gap-4 col-span-8 max-h-44">
-              {
-                products.map((product, index) => (
-                  <div key={index} className="w-fit bg-slate-300 p-4 rounded-lg text-center hover:cursor-pointer hover:scale-105 duration-200 hover:shadow-sm" onClick={() => handleProductClick(product)}>
-                    <img src={product.thumbnail} alt={product.title} />
-                    <div>
-                      <p>{product.title}</p>
-                      <p>${product.price}</p>
-                    </div>
-                  </div>
-                ))
-              }
+            <div className="products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 col-span-1 lg:col-span-9 p-2">
+              {products.map((product, index) => (
+                <ProductCardTypeTwo
+                  key={index}
+                  handleProductClick={handleProductClick}
+                  handleWishlist={handleWishlist}
+                  product={product}
+                  wishlist={wishlist}
+                />
+              ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-4 mt-[-300px] col-span-8">
+            <div className="grid grid-cols-1 gap-4 col-span-1 lg:col-span-9">
               <NoItems />
             </div>
           )}
 
-          <div className="filters col-span-4 max-h-[95vh] overflow-auto">
-            <h1 className="text-2xl mb-4">Filter by Category</h1>
-            {categoriesWithAll.map((category: any) => (
-              <div className={`flex items-center gap-2 hover:bg-slate-200 rounded-sm p-2 overflow-auto ${selectedCategory === category.slug || selectedCategory === category.name ? "bg-red-200" : ""}`} onClick={() => handleProductByCategory(category)}>
-                {setCategoryIcon(category.name)}
-                <Link
-                  key={category.slug}
-                  title={category.name}
-                  to={""}
-                  className="text-xl font-medium transition"
-                >
-                  {category.name}
-                </Link>
-              </div>
-            ))}
+          {/* Filters */}
+          <div className="hidden lg:block col-span-3">
+            <FilterByCategories
+              categoriesWithAll={categoriesWithAll}
+              handleProductByCategory={handleProductByCategory}
+              selectedCategory={selectedCategory}
+            />
           </div>
+
         </section>
       </section>
     </div>
+  
   )
 }
 
