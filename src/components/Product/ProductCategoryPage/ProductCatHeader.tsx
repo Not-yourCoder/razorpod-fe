@@ -1,5 +1,4 @@
 import { ChevronLeft } from 'lucide-react'
-import React from 'react'
 
 type Props = {
     selectedCategory: string

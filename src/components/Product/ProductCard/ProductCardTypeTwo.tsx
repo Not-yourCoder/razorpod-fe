@@ -1,7 +1,6 @@
 import { Badge } from '@/components/Ui/badge'
 import type { Product } from '@/store/types'
 import { getBadgeColor, isWishlisted } from '@/utils/utils'
-import React from 'react'
 
 type Props = {
     handleProductClick: (product: Product) => void
